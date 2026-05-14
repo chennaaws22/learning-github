@@ -4,23 +4,28 @@ on: workflow_dispatch
 jobs:
   runner-workspace:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: /home/runner/work/learning-github
+    # defaults:
+    #   run:
+    #     working-directory: /home/runner/work/learning-github
 
     steps:
 
+      - name: Print GitHub workspace
+        run: |
+          echo "GITHUB_WORKSPACE is:"
+          echo $GITHUB_WORKSPACE
+ 
       - name: Checkout Self Repository
         uses: actions/checkout@v4
         with:
-          path: /home/runner/work/learning-github/webapp
+          path: webapp
 
       - name: Checkout Github Repository
         uses: actions/checkout@v4
         with:
           repository: 'chennaaws22/aws-terraform'
           ref: master
-          path: /home/runner/work/learning-github/aws-terraform
+          path: aws-terraform
           token: ${{ secrets.GHREPO_TOKEN }}
 
       - name: List all folders and files in runner workspace
