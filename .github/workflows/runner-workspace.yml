@@ -9,8 +9,6 @@ jobs:
         working-directory: /home/runner/work/learning-github
 
     steps:
-      - name: Create base directory
-        run: mkdir -p /home/runner/work/learning-github
 
       - name: Checkout Self Repository
         uses: actions/checkout@v4
