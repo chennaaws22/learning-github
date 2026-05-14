@@ -12,9 +12,8 @@ jobs:
 
       - name: Print GitHub workspace
         run: |
-          echo "GITHUB_WORKSPACE is:"
-          echo $GITHUB_WORKSPACE
- 
+          echo "GITHUB_WORKSPACE is:  $GITHUB_WORKSPACE"
+
       - name: Checkout Self Repository
         uses: actions/checkout@v4
         with:
@@ -28,17 +27,10 @@ jobs:
           path: aws-terraform
           token: ${{ secrets.GHREPO_TOKEN }}
 
-      - name: List all folders and files in runner workspace
+      - name: List folders under working directory
         run: |
-          echo "Current working directory:"
-          pwd
-          
-          echo "Top-level contents:"
-          ls -l
-          
-          echo "Recursive listing of all files and folders:"
-          find . -type f
-          find . -type d
+          echo "Folders under $GITHUB_WORKSPACE:"
+          ls -l $GITHUB_WORKSPACE
 
       - name: Show directory structure
         run: |
