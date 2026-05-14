@@ -29,8 +29,8 @@ jobs:
 
       - name: List folders under working directory
         run: |
-          echo "Folders under $GITHUB_WORKSPACE:"
-          ls -l $GITHUB_WORKSPACE
+          echo "All Folders under $GITHUB_WORKSPACE:"
+          ls -la $GITHUB_WORKSPACE
 
       - name: Show directory structure
         run: |
