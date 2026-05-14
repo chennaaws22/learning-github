@@ -16,7 +16,9 @@ jobs:
 
       - name: Checkout Self Repository
         uses: actions/checkout@v4
-        
+        with:
+          path: learning-github
+
       - name: Checkout Github Repository
         uses: actions/checkout@v4
         with:
