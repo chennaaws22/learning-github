@@ -16,9 +16,7 @@ jobs:
 
       - name: Checkout Self Repository
         uses: actions/checkout@v4
-        with:
-          path: webapp
-
+        
       - name: Checkout Github Repository
         uses: actions/checkout@v4
         with:
@@ -34,8 +32,10 @@ jobs:
 
       - name: Show directory structure
         run: |
+          REPO_NAME=${GITHUB_REPOSITORY##*/}
+          echo "Repo name is: $REPO_NAME"
           echo "Self repository structure:"
-          tree webapp || ls -R webapp
+          tree "$REPO_NAME" || ls -R "$REPO_NAME"
 
           echo "Other Github repository structure:"
           tree aws-terraform || ls -R aws-terraform
