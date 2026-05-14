@@ -1,0 +1,41 @@
+name: Checkout Multiple Repos into Runner Workspace
+on: workflow_dispatch
+
+jobs:
+  runner-workspace:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Self Repository
+        uses: actions/checkout@v2
+        with:
+          path: webapp
+
+      - name: Checkout Github Repository
+        uses: actions/checkout@v2
+        with:
+          repository: 'chennaaws22/aws-terraform'
+          ref: 'main'
+          token: ${{ secrets.GHREPO_TOKEN }}
+          path: aws-terraform
+
+      # List all folders and files in runner workspace
+      - name: List all folders and files in runner workspace
+        run: |
+          echo "Current working directory:"
+          pwd
+          
+          echo "Top-level contents:"
+          ls -l
+          
+          echo "Recursive listing of all files and folders:"
+          find . -type f
+          find . -type d
+
+      # 3. Display directory structure of both repos
+      - name: Show directory structure
+        run: |
+          echo "Self repository structure:"
+          tree webapp || ls -R webapp
+
+          echo "Other Github repository structure:"
+          tree aws-terraform || ls -R aws-terraform
