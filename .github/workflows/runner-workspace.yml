@@ -4,22 +4,27 @@ on: workflow_dispatch
 jobs:
   runner-workspace:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: /home/runner/work/learning-github
+
     steps:
+      - name: Create base directory
+        run: mkdir -p /home/runner/work/learning-github
+
       - name: Checkout Self Repository
         uses: actions/checkout@v4
         with:
-          path: webapp
+          path: /home/runner/work/learning-github/webapp
 
       - name: Checkout Github Repository
         uses: actions/checkout@v4
         with:
           repository: 'chennaaws22/aws-terraform'
           ref: master
-          path: aws-terraform
+          path: /home/runner/work/learning-github/aws-terraform
           token: ${{ secrets.GHREPO_TOKEN }}
-          
 
-      # List all folders and files in runner workspace
       - name: List all folders and files in runner workspace
         run: |
           echo "Current working directory:"
@@ -32,7 +37,6 @@ jobs:
           find . -type f
           find . -type d
 
-      # 3. Display directory structure of both repos
       - name: Show directory structure
         run: |
           echo "Self repository structure:"
