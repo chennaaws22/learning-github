@@ -6,12 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Self Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: webapp
 
       - name: Checkout Github Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: 'chennaaws22/aws-terraform'
           ref: 'main'
